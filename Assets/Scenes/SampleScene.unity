@@ -15119,7 +15119,6 @@ MonoBehaviour:
   shooting: 0
   time: 1.5
   point: {fileID: 1449204243}
-  canShoot: 1
   doubleJumpSpeed: 15
   Dash: 0
   Dash_T: 0

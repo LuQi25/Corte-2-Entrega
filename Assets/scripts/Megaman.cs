@@ -20,7 +20,6 @@ public class Megaman : MonoBehaviour
     public float time;
     public GameObject point;//punto de disparo
 
-    public bool canShoot = true;
 
     bool isGrounded;
     bool canDoubleJump;
@@ -32,9 +31,7 @@ public class Megaman : MonoBehaviour
 
     public float cooldown = 2; //cooldown para ritmo que salen las balas cada cierto tiempo
     private float nextFire;
-
-
-   
+ 
 
     void Start()
     {
@@ -56,23 +53,6 @@ public class Megaman : MonoBehaviour
         {
             Disparar();
         }
-
-
-
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-            //myAnimator.SetLayerWeight(0, 0);
-            //myAnimator.SetLayerWeight(1, 1);
-            //StartCoroutine(Attack());
-        //}
-        //else
-        //{
-            //myAnimator.SetLayerWeight(0, 1);
-            //myAnimator.SetLayerWeight(1, 0);
-        //}
-
-
 
     }
 

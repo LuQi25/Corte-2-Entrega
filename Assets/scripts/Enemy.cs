@@ -7,25 +7,30 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] CircleCollider2D Detector;
     [SerializeField] GameObject player;
+    [SerializeField] AudioClip sfx_deadEn2;
+    public Animator myanimator;
+    public float MaxHitPoints = 5;
+    public float Hitpoints;
 
     void Start()
     {
-        
+        myanimator = GetComponent<Animator>();
+        Hitpoints = MaxHitPoints;
     }
 
     
     void Update()
     {
         //Metodo recomendable --malo que esta aun en update y no es evento.  -update que va cada frame-.
-        Collider2D chocando = Physics2D.OverlapCircle(transform.position, 10, LayerMask.GetMask("Player"));
+        Collider2D chocando = Physics2D.OverlapCircle(transform.position, 6, LayerMask.GetMask("Player"));
 
         if (chocando !=null)
         {
-            Debug.Log("Siguiendo el pj");
+            //Debug.Log("Siguiendo el pj");
         }
         else
         {
-            Debug.Log("No siga al pj");
+            //Debug.Log("No siga al pj");
         }
 
 
@@ -49,12 +54,35 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Dejar de seguir");
         }*/
+
+        
  
     }
 
     private void OnDrawGizmos()
     {
         //Gizmos.DrawLine(transform.position, player.transform.position); //con la solucion 2.
-        Gizmos.DrawWireSphere(transform.position, 10);
+        Gizmos.DrawWireSphere(transform.position, 6);
     }
+    public void TakeHit(float damage)
+    {
+        Hitpoints -= damage;
+        if (Hitpoints <= 0)
+        {
+            AudioSource.PlayClipAtPoint(sfx_deadEn2, Camera.main.transform.position);
+            myanimator.SetBool("Dying", true);
+
+        }
+    }
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+
 }
